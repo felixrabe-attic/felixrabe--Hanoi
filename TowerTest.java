@@ -2,6 +2,8 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.util.Iterator;
+
 public class TowerTest {
     private Tower tower;
 
@@ -29,5 +31,35 @@ public class TowerTest {
         assertEquals(4, tower.pop().getSize());
         assertEquals(6, tower.pop().getSize());
         assertTrue(tower.pop() instanceof NullPiece);
+    }
+
+    @Test
+    public void testIterator() {
+        tower.add(new Piece(12));
+        tower.add(new Piece(10));
+        tower.add(new Piece(6));
+        tower.add(new Piece(3));
+        tower.add(new Piece(2));
+
+        Iterator<Piece> iterator = tower.iterator();
+        assertTrue(iterator.hasNext());
+        assertEquals(12, iterator.next().getSize());
+        assertTrue(iterator.hasNext());
+        assertEquals(10, iterator.next().getSize());
+        assertTrue(iterator.hasNext());
+        assertEquals(6, iterator.next().getSize());
+        assertTrue(iterator.hasNext());
+        assertEquals(3, iterator.next().getSize());
+        assertTrue(iterator.hasNext());
+        assertEquals(2, iterator.next().getSize());
+        assertTrue(iterator.hasNext());
+        assertTrue(iterator.next() instanceof NullPiece);
+        assertTrue(iterator.hasNext());
+        assertTrue(iterator.next() instanceof NullPiece);
+        assertTrue(iterator.hasNext());
+        assertTrue(iterator.next() instanceof NullPiece);
+        assertTrue(iterator.hasNext());
+        assertTrue(iterator.next() instanceof NullPiece);
+        assertFalse(iterator.hasNext());
     }
 }
