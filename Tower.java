@@ -12,7 +12,9 @@ public class Tower {
     }
 
     public boolean /* successful? */ add(Piece newPiece) {
-        if (towerIsFull()) {
+        if (newPiece instanceof NullPiece) {
+            return false;
+        } else if (towerIsFull()) {
             return false;
         } else if (thereIsNoPieceYet() || newPieceIsSmallerThanTopPiece(newPiece)) {
             this.pieces[height++] = newPiece;
@@ -24,7 +26,7 @@ public class Tower {
 
     public Piece pop() {
         if (thereIsNoPieceYet()) {
-            return null;
+            return new NullPiece();
         } else {
             return pieces[--height];
         }

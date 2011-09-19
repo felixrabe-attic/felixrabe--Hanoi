@@ -19,7 +19,7 @@ public class TowerTest {
 
     @Test
     public void testPop() {
-        assertNull(tower.pop());
+        assertTrue(tower.pop() instanceof NullPiece);
         tower.add(new Piece(6));
         tower.add(new Piece(3));
         tower.add(new Piece(2));
@@ -28,6 +28,6 @@ public class TowerTest {
         tower.add(new Piece(4));
         assertEquals(4, tower.pop().getSize());
         assertEquals(6, tower.pop().getSize());
-        assertNull(tower.pop());
+        assertTrue(tower.pop() instanceof NullPiece);
     }
 }
