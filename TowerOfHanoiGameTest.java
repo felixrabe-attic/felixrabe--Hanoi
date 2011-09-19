@@ -23,4 +23,12 @@ public class TowerOfHanoiGameTest {
         assertEquals(8, game_3x8.getNumberOfPieces());
         assertEquals(5, game_4x5.getNumberOfPieces());
     }
+
+    @Test
+    public void testThreeTowersIsDefault() {
+        TowerOfHanoiGame game_x2 = new TowerOfHanoiGame(2);
+        TowerOfHanoiGame game_x99 = new TowerOfHanoiGame(99);
+        assertEquals(3, game_x2.getNumberOfTowers());
+        assertEquals(3, game_x99.getNumberOfTowers());
+    }
 }
