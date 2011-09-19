@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 public class TowerTest {
     private Tower tower;
+    private Iterator<Piece> iterator;
 
     @Before
     public void setUp() {
@@ -41,25 +42,26 @@ public class TowerTest {
         tower.add(new Piece(3));
         tower.add(new Piece(2));
 
-        Iterator<Piece> iterator = tower.iterator();
-        assertTrue(iterator.hasNext());
-        assertEquals(12, iterator.next().getSize());
-        assertTrue(iterator.hasNext());
-        assertEquals(10, iterator.next().getSize());
-        assertTrue(iterator.hasNext());
-        assertEquals(6, iterator.next().getSize());
-        assertTrue(iterator.hasNext());
-        assertEquals(3, iterator.next().getSize());
-        assertTrue(iterator.hasNext());
-        assertEquals(2, iterator.next().getSize());
-        assertTrue(iterator.hasNext());
-        assertTrue(iterator.next() instanceof NullPiece);
-        assertTrue(iterator.hasNext());
-        assertTrue(iterator.next() instanceof NullPiece);
-        assertTrue(iterator.hasNext());
-        assertTrue(iterator.next() instanceof NullPiece);
-        assertTrue(iterator.hasNext());
-        assertTrue(iterator.next() instanceof NullPiece);
+        iterator = tower.iterator();
+        assertNextPieceHasSize(12);
+        assertNextPieceHasSize(10);
+        assertNextPieceHasSize(6);
+        assertNextPieceHasSize(3);
+        assertNextPieceHasSize(2);
+        assertNextPieceIsNullPiece();
+        assertNextPieceIsNullPiece();
+        assertNextPieceIsNullPiece();
+        assertNextPieceIsNullPiece();
         assertFalse(iterator.hasNext());
+    }
+
+    private void assertNextPieceHasSize(int size) {
+        assertTrue(iterator.hasNext());
+        assertEquals(size, iterator.next().getSize());
+    }
+
+    private void assertNextPieceIsNullPiece() {
+        assertTrue(iterator.hasNext());
+        assertTrue(iterator.next() instanceof NullPiece);
     }
 }
