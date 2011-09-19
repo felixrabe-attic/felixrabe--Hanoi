@@ -1,7 +1,7 @@
-public class TowerOfHanoiGame {
+public class Game {
     private Tower[] towers;
 
-    public TowerOfHanoiGame(int numberOfTowers, int numberOfPieces) {
+    public Game(int numberOfTowers, int numberOfPieces) {
         if (numberOfTowers < 1 || numberOfPieces < 1) {
             return;
         }
@@ -15,7 +15,7 @@ public class TowerOfHanoiGame {
         }
     }
 
-    public TowerOfHanoiGame(int numberOfPieces) {
+    public Game(int numberOfPieces) {
         this(3, numberOfPieces);
     }
 
