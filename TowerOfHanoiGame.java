@@ -2,6 +2,9 @@ public class TowerOfHanoiGame {
     private Tower[] towers;
 
     public TowerOfHanoiGame(int numberOfTowers, int numberOfPieces) {
+        if (numberOfTowers < 1 || numberOfPieces < 1) {
+            return;
+        }
         towers = new Tower[numberOfTowers];
         for (int i = 0; i < towers.length; i++) {
             towers[i] = new Tower(numberOfPieces);
@@ -25,11 +28,18 @@ public class TowerOfHanoiGame {
     }
 
     public boolean /* successful? */ movePiece(int fromTower, int toTower) {
+        if (towerNumberOutOfBounds(fromTower) || towerNumberOutOfBounds(toTower)) {
+            return false;
+        }
         Piece piece = towers[fromTower].pop();
         boolean successful = towers[toTower].add(piece);
         if (!successful) {
             towers[fromTower].add(piece);  // put it back
         }
         return successful;
+    }
+
+    private boolean towerNumberOutOfBounds(int towerNumber) {
+        return towerNumber < 0 || towerNumber >= getNumberOfTowers();
     }
 }

@@ -31,4 +31,37 @@ public class TowerOfHanoiGameTest {
         assertEquals(3, game_x2.getNumberOfTowers());
         assertEquals(3, game_x99.getNumberOfTowers());
     }
+
+    @Test
+    public void testMovePiece() {
+        assertEquals(3, game_3x8.getNumberOfTowers());
+        assertEquals(8, game_3x8.getNumberOfPieces());
+        // 87654321 - -
+        assertTrue(game_3x8.movePiece(0, 2));
+        // 8765432 - 1
+        assertTrue(game_3x8.movePiece(0, 1));
+        // 876543 2 1
+        assertFalse(game_3x8.movePiece(1, 2));
+        // 876543 2 1
+        assertTrue(game_3x8.movePiece(2, 1));
+        // 876543 21 -
+        assertTrue(game_3x8.movePiece(0, 2));
+        // 87654 21 3
+        assertTrue(game_3x8.movePiece(1, 0));
+        // 876541 2 3
+        assertTrue(game_3x8.movePiece(1, 2));
+        // 876541 - 32
+        assertTrue(game_3x8.movePiece(0, 2));
+        // 87654 - 321
+    }
+
+    @Test
+    public void testInvalidMoves() {
+        assertEquals(3, game_3x8.getNumberOfTowers());
+        assertFalse(game_3x8.movePiece(0, 3));  // last tower is 2
+        assertFalse(game_3x8.movePiece(1, 0));  // tower 1 has no piece
+        assertTrue(game_3x8.movePiece(0, 1));
+        assertFalse(game_3x8.movePiece(0, 1));  // piece has to be smaller
+        assertFalse(game_3x8.movePiece(1, -1));  // first tower is 0
+    }
 }
