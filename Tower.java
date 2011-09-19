@@ -1,7 +1,4 @@
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
-public class Tower implements Iterable<Piece> {
+public class Tower {
     private Piece[] pieces;
     private int height;
 
@@ -53,33 +50,5 @@ public class Tower implements Iterable<Piece> {
 
     private boolean newPieceIsSmallerThanTopPiece(Piece newPiece) {
         return pieces[height-1].getSize() > newPiece.getSize();
-    }
-
-    public Iterator<Piece> iterator() {
-        return new PieceIterator(this);
-    }
-
-    private class PieceIterator implements Iterator<Piece> {
-        private Tower tower;
-        private int currentHeight;
-
-        public PieceIterator(Tower tower) {
-            this.tower = tower;
-            this.currentHeight = 0;
-        }
-
-        public boolean hasNext() {
-            return this.currentHeight < this.tower.getMaxHeight();
-        }
-
-        public Piece next() {
-            if (this.currentHeight >= this.tower.getMaxHeight())
-                throw new NoSuchElementException();
-            return this.tower.pieceAt(this.currentHeight++);
-        }
-
-        public void remove() {
-            throw new UnsupportedOperationException();
-        }
     }
 }

@@ -2,12 +2,9 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import java.util.Iterator;
-
 public class GameTest {
     private Game game_3x8;
     private Game game_4x5;
-    private Iterator<Tower> iterator;
 
     @Before
     public void setUp() {
@@ -66,34 +63,5 @@ public class GameTest {
         assertTrue(game_3x8.movePiece(0, 1));
         assertFalse(game_3x8.movePiece(0, 1));  // piece has to be smaller
         assertFalse(game_3x8.movePiece(1, -1));  // first tower is 0
-    }
-
-    @Test
-    public void testIterator() {
-        iterator = game_3x8.iterator();
-        assertNextTowerHasMaxHeight(8);
-        assertNextTowerHasMaxHeightAndIsEmpty(8);
-        assertNextTowerHasMaxHeightAndIsEmpty(8);
-        assertFalse(iterator.hasNext());
-
-        iterator = game_4x5.iterator();
-        assertNextTowerHasMaxHeight(5);
-        assertNextTowerHasMaxHeightAndIsEmpty(5);
-        assertNextTowerHasMaxHeightAndIsEmpty(5);
-        assertNextTowerHasMaxHeightAndIsEmpty(5);
-        assertFalse(iterator.hasNext());
-    }
-
-    private void assertNextTowerHasMaxHeight(int maxHeight) {
-        assertTrue(iterator.hasNext());
-        Tower tower = iterator.next();
-        assertEquals(maxHeight, tower.getMaxHeight());
-    }
-
-    private void assertNextTowerHasMaxHeightAndIsEmpty(int maxHeight) {
-        assertTrue(iterator.hasNext());
-        Tower tower = iterator.next();
-        assertEquals(maxHeight, tower.getMaxHeight());
-        assertTrue(tower.pop() instanceof NullPiece);
     }
 }

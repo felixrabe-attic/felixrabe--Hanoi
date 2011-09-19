@@ -1,7 +1,4 @@
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
-public class Game implements Iterable<Tower> {
+public class Game {
     private Tower[] towers;
 
     public Game(int numberOfTowers, int numberOfPieces) {
@@ -48,33 +45,5 @@ public class Game implements Iterable<Tower> {
 
     private boolean towerNumberOutOfBounds(int towerNumber) {
         return towerNumber < 0 || towerNumber >= getNumberOfTowers();
-    }
-
-    public Iterator<Tower> iterator() {
-        return new TowerIterator(this);
-    }
-
-    private class TowerIterator implements Iterator<Tower> {
-        private Game game;
-        private int currentTower;
-
-        public TowerIterator(Game game) {
-            this.game = game;
-            this.currentTower = 0;
-        }
-
-        public boolean hasNext() {
-            return this.currentTower < this.game.getNumberOfTowers();
-        }
-
-        public Tower next() {
-            if (this.currentTower >= this.game.getNumberOfTowers())
-                throw new NoSuchElementException();
-            return this.game.towerAt(this.currentTower++);
-        }
-
-        public void remove() {
-            throw new UnsupportedOperationException();
-        }
     }
 }

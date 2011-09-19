@@ -2,11 +2,8 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import java.util.Iterator;
-
 public class TowerTest {
     private Tower tower;
-    private Iterator<Piece> iterator;
 
     @Before
     public void setUp() {
@@ -32,36 +29,5 @@ public class TowerTest {
         assertEquals(4, tower.pop().getSize());
         assertEquals(6, tower.pop().getSize());
         assertTrue(tower.pop() instanceof NullPiece);
-    }
-
-    @Test
-    public void testIterator() {
-        tower.add(new Piece(12));
-        tower.add(new Piece(10));
-        tower.add(new Piece(6));
-        tower.add(new Piece(3));
-        tower.add(new Piece(2));
-
-        iterator = tower.iterator();
-        assertNextPieceHasSize(12);
-        assertNextPieceHasSize(10);
-        assertNextPieceHasSize(6);
-        assertNextPieceHasSize(3);
-        assertNextPieceHasSize(2);
-        assertNextPieceIsNullPiece();
-        assertNextPieceIsNullPiece();
-        assertNextPieceIsNullPiece();
-        assertNextPieceIsNullPiece();
-        assertFalse(iterator.hasNext());
-    }
-
-    private void assertNextPieceHasSize(int size) {
-        assertTrue(iterator.hasNext());
-        assertEquals(size, iterator.next().getSize());
-    }
-
-    private void assertNextPieceIsNullPiece() {
-        assertTrue(iterator.hasNext());
-        assertTrue(iterator.next() instanceof NullPiece);
     }
 }
